@@ -1,0 +1,15 @@
+.marcas-background {
+    background-image: url('/src/assets/dentro2.png'); 
+    background-size: 100%; /* Aumenta el tamaño para simular zoom */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.marcas-seccion {
+  margin-top: center; /* Subís la sección hacia arriba */
+  position: relative; /* Por si necesitás control de apilado */
+  z-index: 1;
+}

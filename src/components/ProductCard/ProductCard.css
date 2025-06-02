@@ -1,0 +1,68 @@
+.vehiculo-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Distastancia horizontal entre tarjeta */
+  padding: 10px 1px; /*Distancia desde el header y lateral*/
+  background: linear-gradient(135deg, #f5f5f510, #f5f5f510);
+}
+
+.tarjeta {
+  width: 260px; /*ancho de la tarjeta*/
+  background-color: #ffffff;
+  border-radius: 20px; /* Redondeo de Borde */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid #000000; /* Tamaño del borde del contenedor */
+}
+
+.tarjeta:hover {
+  transform: translateY(-40px); /* Salto de la tarjeta */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+}
+
+.tarjeta-imagen {
+  width: 100%;
+  height: 180px; /* Alto de la imagen */
+  object-fit: cover;
+  border-bottom: 1px solid #000000; 
+}
+
+.tarjeta-nombre {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 1px 1px 1px;
+  color: #1a1a1a;
+  min-height: 1px;
+}
+
+.tarjeta-precio {
+  font-size: 1.1rem;
+  color: #00695c;
+  font-weight: 600; 
+  margin: 0 1px 1px;
+}
+
+.tarjeta-boton {
+  background-color: #00695c;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin: 0 20px 24px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.tarjeta-boton:hover {
+  background-color: #004d40;
+  transform: scale(1.03);
+}
+

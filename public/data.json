@@ -1,0 +1,194 @@
+[
+  {
+    "marca": "Volkswagen",
+    "modelo": "Polo Track MSI MT",
+    "precio": 28900900,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "vw1"
+  },
+  {
+    "marca": "Volkswagen",
+    "modelo": "Saveiro Trendline CS MSI MT",
+    "precio": 30162100,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "vw2"
+  },
+  {
+    "marca": "Volkswagen",
+    "modelo": "Taos Comfortline 250TSI AT",
+    "precio": 43290000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "vw3"
+  },
+  {
+    "marca": "Chevrolet",
+    "modelo": "S10 Work Truck 4x2 MT",
+    "precio": 36949900,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "chevy1"
+  },
+  {
+    "marca": "Chevrolet",
+    "modelo": "Spin LT - 5 Asientos",
+    "precio": 26826900,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "chevy2"
+  },
+  {
+    "marca": "Chevrolet",
+    "modelo": "Blazer EV",
+    "precio": 60000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "chevy3"
+  },
+  {
+    "marca": "Toyota",
+    "modelo": "Hilux DX 4x2 2.4 TDI 6MT",
+    "precio": 35000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "toyota1"
+  },
+  {
+    "marca": "Toyota",
+    "modelo": "Corolla Cross XLI 2.0 CVT",
+    "precio": 42000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "toyota2"
+  },
+  {
+    "marca": "Toyota",
+    "modelo": "Yaris Hatchback XLS 1.5 CVT",
+    "precio": 32000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "toyota3"
+  },
+  {
+    "marca": "Honda",
+    "modelo": "HR-V LX 1.8 CVT",
+    "precio": 38000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "honda1"
+  },
+  {
+    "marca": "Honda",
+    "modelo": "Civic EX 2.0 CVT",
+    "precio": 45000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "honda2"
+  },
+  {
+    "marca": "Honda",
+    "modelo": "WR-V LX 1.5 MT",
+    "precio": 33000000,
+    "anio": 2025,
+   "imagen": "/src/assets/polo-track.jpg",
+    "id": "honda3"
+  },
+  {
+    "marca": "Renault",
+    "modelo": "Kardian",
+    "precio": 28000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "renault1"
+  },
+  {
+    "marca": "Renault",
+    "modelo": "Duster Zen 1.6 MT",
+    "precio": 30000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "renault2"
+  },
+  {
+    "marca": "Renault",
+    "modelo": "Alaskan Confort 2.3 dCi 4x2 MT",
+    "precio": 37000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "renault3"
+  },
+  {
+    "marca": "Fiat",
+    "modelo": "Cronos Drive 1.3 MT",
+    "precio": 27000000,
+    "anio": 2025,
+   "imagen": "/src/assets/polo-track.jpg",
+    "id": "fiat1"
+  },
+  {
+    "marca": "Fiat",
+    "modelo": "Pulse Drive 1.3 MT",
+    "precio": 29000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "fiat2"
+  },
+  {
+    "marca": "Fiat",
+    "modelo": "Titano",
+    "precio": 40000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "fiat3"
+  },
+  {
+    "marca": "Ford",
+    "modelo": "Ranger XL 2.0 TDCi 4x2 MT",
+    "precio": 36000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "ford1"
+  },
+  {
+    "marca": "Ford",
+    "modelo": "Territory SEL 1.5T CVT",
+    "precio": 41000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "ford2"
+  },
+  {
+    "marca": "Ford",
+    "modelo": "Everest",
+    "precio": 50000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "ford3"
+  },
+  {
+    "marca": "Peugeot",
+    "modelo": "208 Active AM25",
+    "precio": 21662200,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "peugeot1"
+  },
+  {
+    "marca": "Peugeot",
+    "modelo": "E-2008",
+    "precio": 45000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "peugeot2"
+  },
+  {
+    "marca": "Peugeot",
+    "modelo": "3008 GT",
+    "precio": 48000000,
+    "anio": 2025,
+    "imagen": "/src/assets/polo-track.jpg",
+    "id": "peugeot3"
+  }
+]
