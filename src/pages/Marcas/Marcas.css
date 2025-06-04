@@ -1,5 +1,5 @@
 .marcas-background {
-    background-image: url('/src/assets/dentro2.png'); 
+    background-image: url('/public/dentro2.png'); 
     background-size: 100%; /* Aumenta el tamaño para simular zoom */
     background-position: center;
     background-repeat: no-repeat;

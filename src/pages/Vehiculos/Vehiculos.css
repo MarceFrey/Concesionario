@@ -1,5 +1,5 @@
 .vehiculos-background {
-    background-image: url('/src/assets/vehiculos.png'); 
+    background-image: url('public/vehiculos.png'); 
     background-size: 120%; /* Aumenta el tamaño para simular zoom */
     background-position: center;
     background-repeat: no-repeat;
