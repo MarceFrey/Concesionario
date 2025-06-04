@@ -1,5 +1,5 @@
 .home-background {
-    background-image: url('public/portada.jpg'); 
+    background-image: url('/public/portada.jpg'); 
     background-size: 120%; /* Aumenta el tamaño para simular zoom */
     background-position: center;
     background-repeat: no-repeat;
