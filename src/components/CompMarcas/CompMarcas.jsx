@@ -2,8 +2,8 @@ import './CompMarcas.css'
 import { Link } from 'react-router-dom'
 
 const logos = [
-  { id: 1, src: '/public/volkswagen.png', alt: 'Volkswagen', path: '/marcas/volkswagen' },
-  { id: 2, src: '/public/chevrolet.png', alt: 'Chevrolet', path: '/marcas/chevrolet' },
+  { id: 1, src: '/volkswagen.png', alt: 'Volkswagen', path: '/marcas/volkswagen' },
+  { id: 2, src: '/chevrolet.png', alt: 'Chevrolet', path: '/marcas/chevrolet' },
   { id: 3, src: '/public/toyota.png', alt: 'Toyota', path: '/marcas/toyota' },
   { id: 4, src: '/public/honda.png', alt: 'Honda', path: '/marcas/honda' },
   { id: 5, src: '/public/renault.png', alt: 'Renault', path: '/marcas/renault' },
