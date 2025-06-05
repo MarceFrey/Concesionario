@@ -1,0 +1,10 @@
+.ubicacion-background {
+    background-image: url('/public/ubicacion.png'); 
+    background-size: 100%; /* Aumenta el tamaño para simular zoom */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

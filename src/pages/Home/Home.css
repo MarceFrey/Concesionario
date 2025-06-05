@@ -1,10 +1,31 @@
 .home-background {
-    background-image: url('/public/portada.jpg'); 
-    background-size: 120%; /* Aumenta el tamaño para simular zoom */
+    background-image: url('/public/portada.jpg');
+    background-size: 120%;
+    /* Aumenta el tamaño para simular zoom */
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh; 
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}   

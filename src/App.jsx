@@ -4,7 +4,10 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Marcas from './pages/Marcas/Marcas';
 import Vehiculos from './pages/Vehiculos/Vehiculos';
-
+import SobreNosotros from './pages/SobreNosotros/SobreNosotros';
+import Ubicacion from './pages/Ubicacion/Ubicacion';
+import DetalleVehiculo from './pages/DetalleVehiculo/DetalleVehiculo';
+import Cotizacion from './pages/Cotizacion/Cotizacion';
 
 function App() {
 
@@ -30,6 +33,10 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/marcas" element={<Marcas/>}/>
           <Route path="/vehiculos" element={<Vehiculos vehiculos={auto} error={error} loading={loading}/>}/>
+          <Route path="/sobrenosotros" element={<SobreNosotros/>}/>
+          <Route path="/ubicacion" element={<Ubicacion/>}/>
+          <Route path="/cotizacion" element={<Cotizacion/>}/>
+          <Route path="/vehiculo/:id" element={<DetalleVehiculo vehiculos={auto} />} />
         </Routes>
       </div>
     </>

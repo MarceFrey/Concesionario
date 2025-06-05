@@ -22,7 +22,7 @@
 }
 
 .tarjeta:hover {
-  transform: translateY(-40px); /* Salto de la tarjeta */
+  transform: translateY(-20px); /* Salto de la tarjeta */
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
 }
 
