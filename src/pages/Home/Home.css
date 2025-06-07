@@ -1,15 +1,16 @@
 .home-background {
-    background-image: url('/public/portada.jpg');
-    background-size: 120%;
-    /* Aumenta el tamaño para simular zoom */
+    background-image: url('/portada.jpg'); /* NO uses /public/ en rutas de Vercel */
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 1rem;
 }
 
+/* Ícono flotante de WhatsApp */
 .whatsapp-float {
     position: fixed;
     bottom: 20px;
@@ -24,8 +25,26 @@
 }
 
 .whatsapp-icon {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}   
+}
+
+/* Media Query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .home-background {
+        background-size: cover; /* Se adapta bien al móvil */
+        padding: 0.5rem;
+    }
+
+    .whatsapp-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .whatsapp-float {
+        bottom: 15px;
+        right: 15px;
+    }
+}
