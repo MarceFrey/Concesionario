@@ -8,6 +8,7 @@ import SobreNosotros from './pages/SobreNosotros/SobreNosotros';
 import Ubicacion from './pages/Ubicacion/Ubicacion';
 import DetalleVehiculo from './pages/DetalleVehiculo/DetalleVehiculo';
 import Cotizacion from './pages/Cotizacion/Cotizacion';
+import MarcaVehiculo from './pages/MarcaVehiculo/MarcaVehiculo';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/ubicacion" element={<Ubicacion/>}/>
           <Route path="/cotizacion" element={<Cotizacion/>}/>
           <Route path="/vehiculo/:id" element={<DetalleVehiculo vehiculos={auto} />} />
+          <Route path="/marcas/:marca" element={<MarcaVehiculo vehiculos={auto} error={error} loading={loading}/>} />
         </Routes>
       </div>
     </>
