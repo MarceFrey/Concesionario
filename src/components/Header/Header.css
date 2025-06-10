@@ -7,12 +7,15 @@
 .nav {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .ul {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
   margin: 0;
   padding: 0;
 }
@@ -21,7 +24,8 @@
   text-decoration: none;
   color: #ffffff;
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  padding: 0.5rem;
   position: relative;
   transition: color 0.3s ease;
 }
@@ -45,4 +49,10 @@
 
 .li:hover::after {
   transform: scaleX(1);
+}
+
+@media (max-width: 480px) {
+  .li {
+    font-size: 0.9rem;
+  }
 }

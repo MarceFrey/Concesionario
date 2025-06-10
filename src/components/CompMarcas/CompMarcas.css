@@ -8,40 +8,47 @@
   display: inline-block;
   padding: 1rem 2rem;
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.6); /* Fondo oscuro semitransparente */
+  background: rgba(0, 0, 0, 0.6);
   color: #ffffff;
   font-size: 2.5rem;
   font-weight: bold;
   letter-spacing: 1px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px); /* Difumina el fondo */
+  backdrop-filter: blur(4px);
   margin: 0 auto 2rem auto;
-  text-align: center;
   animation: fadeInDown 1s ease-out;
 }
 
 .marcas-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columnas fijas */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 1.5rem;
   justify-items: center;
   align-items: center;
+  padding: 0 1rem;
 }
 
 .logo-img {
-  background-color: rgba(0, 0, 0, 0.596);      /* Fondo blanco */
-  padding: 10px;                /* Espacio alrededor del logo */
-  border-radius: 10px;          /* Bordes redondeados */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  width: 100px;
+  background-color: rgba(0, 0, 0, 0.596);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 80px;
   height: auto;
   object-fit: contain;
   backdrop-filter: blur(4px);
+  transition: transform 0.3s ease;
   animation: fadeInDown 1s ease-out;
 }
 
 .logo-img:hover {
   transform: scale(1.1);
+}
+
+@media (min-width: 768px) {
+  .logo-img {
+    width: 100px;
+  }
 }
 
 @keyframes fadeInDown {
