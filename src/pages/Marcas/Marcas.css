@@ -1,6 +1,6 @@
 .marcas-background {
     background-image: url('/public/dentro2.png'); 
-    background-size: 100%; /* Aumenta el tamaño para simular zoom */
+    background-size: cover; /* Aumenta el tamaño para simular zoom */
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh; 
@@ -12,4 +12,9 @@
   margin-top: center; /* Subís la sección hacia arriba */
   position: relative; /* Por si necesitás control de apilado */
   z-index: 1;
+}
+@media (max-width: 768px) {
+    .form-columns {
+        flex-direction: column;
+    }
 }

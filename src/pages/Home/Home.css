@@ -1,9 +1,10 @@
 .home-background {
     background-image: url('/public/portada.jpg');
     background-size: cover;
+    /* Aumenta el tamaño para simular zoom */
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -28,4 +29,9 @@
   height: 40px;
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+@media (max-width: 768px) {
+    .form-columns {
+        flex-direction: column;
+    }
 }

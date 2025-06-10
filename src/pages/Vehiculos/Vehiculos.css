@@ -1,6 +1,6 @@
 .vehiculos-background {
     background-image: url('/public/vehiculos.png'); 
-    background-size: 120%; /* Aumenta el tamaño para simular zoom */
+    background-size: cover; /* Aumenta el tamaño para simular zoom */
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh; 
@@ -12,4 +12,9 @@
   flex: 1;
   overflow-y: auto;
   padding: 1rem;
+}
+@media (max-width: 768px) {
+    .form-columns {
+        flex-direction: column;
+    }
 }
