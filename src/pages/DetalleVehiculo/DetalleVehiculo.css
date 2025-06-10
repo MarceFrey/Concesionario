@@ -1,9 +1,12 @@
 .Detalle-background {
   background-image: url('/public/vehiculos.png');
-  background-color: #f5f5f5;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .detalle-container {
@@ -42,7 +45,7 @@
   width: 400px;
   height: auto;
   border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
 .flecha {
@@ -146,6 +149,7 @@
     opacity: 0;
     transform: translateY(-30px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);

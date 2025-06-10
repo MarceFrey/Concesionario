@@ -1,14 +1,12 @@
 .MarcaVehiculo-background {
     background-image: url('/public/marcavehiculo.png');
-    background-size: 120%;
-    /* Aumenta el tamaño para simular zoom */
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
 }
 .autos-grid {
   display: grid;
