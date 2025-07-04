@@ -74,10 +74,21 @@ const Cotizacion = () => {
                                 <p style={{ color: 'red' }}>{resultado.error}</p>
                             ) : (
                                 <>
-                                    <h3>Resultado para CUIT {resultado.identificacion}</h3>
+                                    <h3>Resultado para CUIT {form.nombre}</h3>
+
+                                    {/* Verifica si todas las entidades tienen situación < 3 */}
+                                    {(() => {
+                                        const todasSituaciones = resultado.periodos.flatMap(p => p.entidades.map(ent => ent.situacion));
+                                        const todasBuenas = todasSituaciones.every(s => s < 3);
+                                        return todasBuenas && (
+                                            <p style={{ color: 'green', fontWeight: 'bold' }}>
+                                                ¡Felicitaciones! Tu situación financiera es óptima para solicitar un crédito.
+                                            </p>
+                                        );
+                                    })()}
+
                                     {resultado.periodos.map((p, idx) => (
                                         <div key={idx}>
-                                            <h4>Mes: {p.periodo}</h4>
                                             {p.entidades.map((ent, i) => (
                                                 <div key={i}>
                                                     <p>Entidad: {ent.entidad}</p>
@@ -91,6 +102,7 @@ const Cotizacion = () => {
                             )}
                         </div>
                     )}
+
                 </main>
             </div>
             <Footer />
