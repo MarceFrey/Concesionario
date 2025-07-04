@@ -1,6 +1,6 @@
 .vehiculos-background {
     background-image: url('/public/vehiculos.png'); 
-    background-size: cover; /* Aumenta el tamaño para simular zoom */
+    background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh; 
