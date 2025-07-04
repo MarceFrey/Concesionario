@@ -1,76 +1,103 @@
+import { useState } from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import './Cotizacion.css';
 
 const Cotizacion = () => {
+    const [form, setForm] = useState({ nombre: '', apellido: '', dni: '', email: '', terminos: false });
+    const [resultado, setResultado] = useState(null);
+    const [cargando, setCargando] = useState(false);
+
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setForm({ ...form, [name]: type === 'checkbox' ? checked : value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!form.terminos) {
+            alert("Debe aceptar los términos y condiciones");
+            return;
+        }
+
+        setCargando(true);
+        setResultado(null);
+        try {
+            const res = await fetch(`https://api.bcra.gob.ar/centraldedeudores/v1.0/Deudas/${form.dni}`);
+            if (!res.ok) throw new Error("CUIT inválido o sin datos disponibles");
+            const data = await res.json();
+            setResultado(data.results);
+        } catch (error) {
+            setResultado({ error: error.message });
+        } finally {
+            setCargando(false);
+        }
+    };
+
     return (
         <div className="cotizacion-background">
             <Header />
             <div className="contenedor-formulario">
                 <main className="tarjeta-cotizacion">
-                    <form className="formulario-cotizacion">
-                        <h2>Cotizador Online</h2>
-                        <h3>Detalles de facturación</h3>
+                    <form className="formulario-cotizacion" onSubmit={handleSubmit}>
+                        <h2>Accede a tu Crédito</h2>
 
                         <div className="form-columns">
                             <div className="columna">
                                 <label htmlFor="nombre">Nombre *</label>
-                                <input type="text" id="nombre" name="nombre" required />
+                                <input type="text" id="nombre" name="nombre" value={form.nombre} onChange={handleChange} required />
 
                                 <label htmlFor="apellido">Apellido *</label>
-                                <input type="text" id="apellido" name="apellido" required />
+                                <input type="text" id="apellido" name="apellido" value={form.apellido} onChange={handleChange} required />
 
-                                <label htmlFor="dni">DNI *</label>
-                                <input type="text" id="dni" name="dni" required />
-
-                                <label htmlFor="empresa">Empresa (opcional)</label>
-                                <input type="text" id="empresa" name="empresa" />
-
-                                <label htmlFor="domicilio">Domicilio *</label>
-                                <input type="text" id="domicilio" name="domicilio" required />
-
-                                <label htmlFor="piso">Piso / Depto / Etc.</label>
-                                <input type="text" id="piso" name="piso" />
-                            </div>
-
-                            <div className="columna">
-                                <label htmlFor="barrio">Barrio cerrado / Lote</label>
-                                <input type="text" id="barrio" name="barrio" />
-
-                                <label htmlFor="provincia">Provincia *</label>
-                                <input type="text" id="provincia" name="provincia" required />
-
-                                <label htmlFor="localidad">Localidad / Ciudad *</label>
-                                <input type="text" id="localidad" name="localidad" required />
-
-                                <label htmlFor="codigoPostal">Código postal *</label>
-                                <input type="text" id="codigoPostal" name="codigoPostal" required />
-
-                                <label htmlFor="celular">Teléfono celular *</label>
-                                <input type="tel" id="celular" name="celular" required />
-
-                                <label htmlFor="telefonoFijo">Teléfono de línea</label>
-                                <input type="tel" id="telefonoFijo" name="telefonoFijo" />
+                                <label htmlFor="dni">CUIT / CUIL *</label>
+                                <input type="text" id="dni" name="dni" value={form.dni} onChange={handleChange} required />
                             </div>
                         </div>
 
                         <label htmlFor="email">Correo electrónico *</label>
-                        <input type="email" id="email" name="email" required />
+                        <input type="email" id="email" name="email" value={form.email} onChange={handleChange} required />
 
                         <div className="checkbox-condiciones">
-                            <input type="checkbox" id="terminos" name="terminos" required />
+                            <input type="checkbox" id="terminos" name="terminos" checked={form.terminos} onChange={handleChange} />
                             <label htmlFor="terminos">Acepto los términos y condiciones *</label>
                         </div>
 
-                        <button type="submit">Cotizar</button>
+                        <button type="submit" disabled={cargando}>
+                            {cargando ? "Consultando..." : "Consultar"}
+                        </button>
                     </form>
 
+                    {resultado && (
+                        <div className="resultado-crediticio">
+                            {resultado.error ? (
+                                <p style={{ color: 'red' }}>{resultado.error}</p>
+                            ) : (
+                                <>
+                                    <h3>Resultado para CUIT {resultado.identificacion}</h3>
+                                    {resultado.periodos.map((p, idx) => (
+                                        <div key={idx}>
+                                            <h4>Mes: {p.periodo}</h4>
+                                            {p.entidades.map((ent, i) => (
+                                                <div key={i}>
+                                                    <p>Entidad: {ent.entidad}</p>
+                                                    <p>Situación: {ent.situacion} - Monto: ${ent.monto}</p>
+                                                    <p>Días de atraso: {ent.diasAtrasoPago}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ))}
+                                </>
+                            )}
+                        </div>
+                    )}
                 </main>
             </div>
             <Footer />
         </div>
     );
-}
+};
 
 export default Cotizacion;
+
 

@@ -40,11 +40,6 @@
     margin-bottom: 0.5rem;
 }
 
-.formulario-cotizacion h3 {
-    font-size: 1.2rem;
-    color: #555;
-    margin-bottom: 1rem;
-}
 
 .formulario-cotizacion label {
     font-weight: 600;
@@ -105,5 +100,42 @@
     .form-columns {
         flex-direction: column;
     }
+}
+
+.resultado-crediticio {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    text-align: left;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.resultado-crediticio h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #222;
+}
+
+.resultado-crediticio h4 {
+    font-size: 1.1rem;
+    margin: 1rem 0 0.5rem;
+    color: #007bff;
+}
+
+.resultado-crediticio p {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.resultado-crediticio::-webkit-scrollbar {
+    width: 8px;
+}
+.resultado-crediticio::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
 }
 
