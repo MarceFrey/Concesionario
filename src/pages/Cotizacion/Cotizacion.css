@@ -1,5 +1,5 @@
 .cotizacion-background {
-    background-image: url('/public/cotizacion.png');
+    background-image: url('/public/vehiculos.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -56,14 +56,14 @@
 }
 
 .formulario-cotizacion input:focus {
-    border-color: #007bff;
+    border-color: #003d36;
     outline: none;
 }
 
 .formulario-cotizacion button {
     padding: 0.8rem;
     font-size: 1.1rem;
-    background-color: #007bff;
+    background-color: #003d36;
     color: white;
     border: none;
     border-radius: 10px;
@@ -72,7 +72,7 @@
 }
 
 .formulario-cotizacion button:hover {
-    background-color: #0056b3;
+    background-color: #00695c;
 }
 .checkbox-condiciones {
     display: flex;

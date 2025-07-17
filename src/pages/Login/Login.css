@@ -1,0 +1,76 @@
+.login-background{
+    background-image: url('/vehiculos.png'); 
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.login-container {
+  flex: 1; /* ocupa todo el espacio disponible */
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+  align-items: center;     /* centra verticalmente */
+  padding-bottom: 3rem;
+}
+
+
+.login-form {
+  background: rgba(0, 0, 0, 0.596);
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-title {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #ffffff;
+}
+
+.login-field {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-field label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.login-field input {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.9rem;
+  background-color: #003d36;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #00695c;
+}
+
+.login-error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}

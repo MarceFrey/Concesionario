@@ -4,6 +4,9 @@
     "modelo": "Polo Track MSI MT",
     "precio": 28900900,
     "anio": 2025,
+    "kilometraje":120000,
+    "color":"gris",
+    "descripcion":"buen auto",
     "imagenes": [
       "/suzuki2.jpg",
       "/suzuki3.jpg",

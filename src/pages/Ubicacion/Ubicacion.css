@@ -1,5 +1,5 @@
 .ubicacion-background {
-    background-image: url('/public/ubicacion.png'); 
+    background-image: url('/public/vehiculos.png'); 
     background-size: cover; /* Aumenta el tamaño para simular zoom */
     background-position: center;
     background-repeat: no-repeat;

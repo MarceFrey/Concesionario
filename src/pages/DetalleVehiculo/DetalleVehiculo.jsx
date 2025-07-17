@@ -1,80 +1,79 @@
-import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Header from "../../components/Header/Header";
 import './DetalleVehiculo.css';
 
-const DetalleVehiculo = ({ vehiculos }) => {
+function DetalleVehiculo() {
   const { id } = useParams();
-  const navigate = useNavigate();
+  const [vehiculo, setVehiculo] = useState(null);
+  const [imagenIndex, setImagenIndex] = useState(0);
+  const [zoomUrl, setZoomUrl] = useState(null);
 
-  const vehiculo = vehiculos.find(v => v.id === id);
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/vehiculos`)
+      .then(res => res.json())
+      .then(data => {
+        const encontrado = data.find(v => v.id === parseInt(id));
+        setVehiculo(encontrado);
+      });
+  }, [id]);
 
-  if (!vehiculo) return <p>Vehículo no encontrado.</p>;
+  if (!vehiculo) return <p>Cargando vehículo...</p>;
 
-  // Si hay múltiples imágenes usá vehiculo.imagenes, si no, usá una sola
-  const imagenes = Array.isArray(vehiculo.imagenes) && vehiculo.imagenes.length > 0
-    ? vehiculo.imagenes
-    : [vehiculo.imagen];
+  const imagenActual = vehiculo.imagenes[imagenIndex];
+  const imagenUrl = (url) => `http://localhost:8080/imagenes/${url.split("/").pop()}`;
 
-  const [imagenActual, setImagenActual] = useState(0);
-
-  const avanzar = () => {
-    setImagenActual((prev) => (prev + 1) % imagenes.length);
-  };
-
-  const retroceder = () => {
-    setImagenActual((prev) =>
-      prev === 0 ? imagenes.length - 1 : prev - 1
-    );
-  };
+  const seleccionarImagen = (i) => setImagenIndex(i);
 
   return (
-    <div className="Detalle-background">
+    <div className="detalle-fondo">
       <Header />
-      <div className="detalle-container">
-        <div className="detalle-columna-izquierda">
-          <div className="detalle-imagen-principal">
-            {imagenes.length > 1 && (
-              <button className="flecha" onClick={retroceder}>&#10094;</button>
-            )}
+      <div className="detalle-background">
+        <div className="detalle-container">
+          <div className="detalle-carrusel">
+            <button onClick={() => setImagenIndex((imagenIndex - 1 + vehiculo.imagenes.length) % vehiculo.imagenes.length)}>&lt;</button>
             <img
-              src={imagenes[imagenActual]}
-              alt={`${vehiculo.marca} ${vehiculo.modelo}`}
+              src={imagenUrl(imagenActual)}
+              alt="imagen principal"
+              onClick={() => setZoomUrl(imagenUrl(imagenActual))}
+              className="detalle-imagen-grande"
             />
-            {imagenes.length > 1 && (
-              <button className="flecha" onClick={avanzar}>&#10095;</button>
-            )}
+            <button onClick={() => setImagenIndex((imagenIndex + 1) % vehiculo.imagenes.length)}>&gt;</button>
           </div>
 
-          {imagenes.length > 1 && (
-            <div className="miniaturas">
-              {imagenes.map((img, index) => (
-                <img
-                  key={index}
-                  src={img}
-                  alt={`Miniatura ${index + 1}`}
-                  className={`miniatura ${index === imagenActual ? 'activa' : ''}`}
-                  onClick={() => setImagenActual(index)}
-                />
-              ))}
-            </div>
-          )}
+          <div className="detalle-miniaturas">
+            {vehiculo.imagenes.map((img, i) => (
+              <img
+                key={i}
+                src={imagenUrl(img)}
+                className={`miniatura ${i === imagenIndex ? 'seleccionada' : ''}`}
+                onClick={() => seleccionarImagen(i)}
+                alt={`thumb-${i}`}
+              />
+            ))}
+          </div>
+
+          <div className="detalle-info">
+            <h2>{vehiculo.marca} {vehiculo.modelo} ({vehiculo.anio})</h2>
+            <p><strong>Precio:</strong> ${vehiculo.precio}</p>
+            <p><strong>Kilometraje:</strong> {vehiculo.kilometraje} km</p>
+            <p><strong>Color:</strong> {vehiculo.color}</p>
+            <p><strong>Descripción:</strong> {vehiculo.descripcion}</p>
+          </div>
         </div>
 
-        <div className="detalle-info">
-          <h2>{vehiculo.marca} {vehiculo.modelo}</h2>
-          <p><strong>Año:</strong> {vehiculo.anio}</p>
-          <p><strong>Precio:</strong> ${vehiculo.precio}</p>
-          <p><strong>Kilometraje:</strong> {vehiculo.kilometraje || 'No especificado'}</p>
-          <p><strong>Color:</strong> {vehiculo.color || 'No especificado'}</p>
-          <p><strong>Descripción:</strong> {vehiculo.descripcion || 'Sin descripción'}</p>
-          <button className="volver-btn" onClick={() => navigate(-1)}>← Volver</button>
-        </div>
+        {/* Modal de zoom */}
+        {zoomUrl && (
+          <div className="zoom-modal" onClick={() => setZoomUrl(null)}>
+            <img src={zoomUrl} alt="Zoom" />
+          </div>
+        )}
       </div>
-      <Footer />
     </div>
   );
-};
+}
 
 export default DetalleVehiculo;
+
+
+

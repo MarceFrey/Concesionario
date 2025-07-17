@@ -9,15 +9,19 @@ import Ubicacion from './pages/Ubicacion/Ubicacion';
 import DetalleVehiculo from './pages/DetalleVehiculo/DetalleVehiculo';
 import Cotizacion from './pages/Cotizacion/Cotizacion';
 import MarcaVehiculo from './pages/MarcaVehiculo/MarcaVehiculo';
+import ProtectedRoute from './pages/Auth/ProtectedRoute';
+import Admin from './pages/Admin/Admin';
+import Login from './pages/Login/Login';
+import { useAuth } from './Context/AuthContext';
 
 function App() {
-
+  const { isAuth } = useAuth();
   const [auto, setAutos] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  fetch('/data.json')
+  fetch('http://localhost:8080/api/vehiculos')
     .then(res => {
       if (!res.ok) throw new Error('Error al cargar productos');
       return res.json();
@@ -39,6 +43,8 @@ function App() {
           <Route path="/cotizacion" element={<Cotizacion/>}/>
           <Route path="/vehiculo/:id" element={<DetalleVehiculo vehiculos={auto} />} />
           <Route path="/marcas/:marca" element={<MarcaVehiculo vehiculos={auto} error={error} loading={loading}/>} />
+          <Route path='/login' element={<Login/>}/>
+          <Route path="/admin" element={<ProtectedRoute isAuthenticated={isAuth}> <Admin /> </ProtectedRoute>}/>
         </Routes>
       </div>
     </>

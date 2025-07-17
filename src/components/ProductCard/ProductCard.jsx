@@ -10,12 +10,18 @@ function ProductCard({ vehiculos }) {
       {vehiculos.map((auto, index) => {
         // Obtener la primera imagen:
         const primeraImagen = Array.isArray(auto.imagenes) && auto.imagenes.length > 0
-          ? auto.imagenes[0]
-          : auto.imagen; // fallback si no hay array, toma la imagen simple
+          ? `http://localhost:8080/imagenes/${auto.imagenes[0].split('/').pop()}`
+          : auto.imagen ? `http://localhost:8080/imagenes/${auto.imagen.split('/').pop()}` : null;
+
 
         return (
           <div className="tarjeta" key={index}>
-            <img src={primeraImagen} alt={`${auto.marca} ${auto.modelo}`} className="tarjeta-imagen" />
+            <img
+              src={primeraImagen}
+              alt={`${auto.marca} ${auto.modelo}`}
+              className="tarjeta-imagen"
+            />
+
             <p className="tarjeta-nombre">{auto.marca}</p>
             <p className="tarjeta-nombre">{auto.modelo}</p>
             <p className="tarjeta-nombre">{auto.anio}</p>
