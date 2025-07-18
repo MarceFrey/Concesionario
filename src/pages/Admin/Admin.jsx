@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useAuth } from '../../Context/AuthContext';
 import Header from '../../components/Header/Header';
 import './Admin.css';
 
@@ -16,6 +17,8 @@ function Admin() {
   const [mensaje, setMensaje] = useState("");
   const [vehiculos, setVehiculos] = useState([]);
   const [editando, setEditando] = useState(null);
+
+  const { token } = useAuth(); // Obtenemos el token del contexto
 
   useEffect(() => {
     fetchVehiculos();
@@ -47,11 +50,10 @@ function Admin() {
       const res = await fetch("https://concesionariobackend-production.up.railway.app/api/vehiculos/subir", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`
+          "Authorization": `Bearer ${token}` // Agregar token aquí
         },
         body: datos
       });
-
       if (!res.ok) throw new Error("Error al subir vehículo");
       setMensaje("✅ Vehículo guardado correctamente");
       setForm({ marca: "", modelo: "", anio: "", precio: "", kilometraje: "", color: "", descripcion: "" });
@@ -65,29 +67,44 @@ function Admin() {
 
   const eliminarVehiculo = async (id) => {
     if (!window.confirm("¿Eliminar este vehículo?")) return;
-    await fetch(`https://concesionariobackend-production.up.railway.app/api/vehiculos/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`
-      }
-    });
-    fetchVehiculos();
+
+    try {
+      const res = await fetch(`https://concesionariobackend-production.up.railway.app/api/vehiculos/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
+      if (!res.ok) throw new Error("No autorizado o error en el servidor");
+      fetchVehiculos();
+    } catch (error) {
+      console.error("Error al eliminar:", error);
+      alert("Error al eliminar el vehículo. ¿Estás logueado como ADMIN?");
+    }
   };
 
   const abrirEdicion = (vehiculo) => setEditando({ ...vehiculo });
   const handleEditarChange = (e) => setEditando({ ...editando, [e.target.name]: e.target.value });
 
   const guardarCambios = async () => {
-    await fetch(`https://concesionariobackend-production.up.railway.app/api/vehiculos/${editando.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`
-      },
-      body: JSON.stringify(editando)
-    });
-    setEditando(null);
-    fetchVehiculos();
+    try {
+      const res = await fetch(`https://concesionariobackend-production.up.railway.app/api/vehiculos/${editando.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(editando)
+      });
+
+      if (!res.ok) throw new Error("Error al actualizar vehículo");
+      setEditando(null);
+      fetchVehiculos();
+    } catch (err) {
+      console.error(err);
+      alert("Error al actualizar. Verifica tus permisos.");
+    }
   };
 
   return (
@@ -145,7 +162,3 @@ function Admin() {
 }
 
 export default Admin;
-
-
-
-
