@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [token, setToken] = useState(localStorage.getItem("token") || '');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [isAuth, setIsAuth] = useState(false);
-  const [token, setToken] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -38,9 +38,10 @@ export const AuthProvider = ({ children }) => {
       const { token, rol } = data;
 
       setToken(token);
+      localStorage.setItem("token", token); // guarda el token
+
       setIsAuth(true);
       setErrors({});
-      // localStorage.setItem("token", token); // opcional: persistencia
       console.log('User role:', rol);
 
       if (rol === 'ADMIN') {

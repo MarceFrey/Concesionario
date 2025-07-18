@@ -46,8 +46,12 @@ function Admin() {
     try {
       const res = await fetch("https://concesionariobackend-production.up.railway.app/api/vehiculos/subir", {
         method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
         body: datos
       });
+
       if (!res.ok) throw new Error("Error al subir vehículo");
       setMensaje("✅ Vehículo guardado correctamente");
       setForm({ marca: "", modelo: "", anio: "", precio: "", kilometraje: "", color: "", descripcion: "" });
@@ -61,7 +65,12 @@ function Admin() {
 
   const eliminarVehiculo = async (id) => {
     if (!window.confirm("¿Eliminar este vehículo?")) return;
-    await fetch(`https://concesionariobackend-production.up.railway.app/api/vehiculos/${id}`, { method: "DELETE" });
+    await fetch(`https://concesionariobackend-production.up.railway.app/api/vehiculos/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    });
     fetchVehiculos();
   };
 
@@ -71,7 +80,10 @@ function Admin() {
   const guardarCambios = async () => {
     await fetch(`https://concesionariobackend-production.up.railway.app/api/vehiculos/${editando.id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      },
       body: JSON.stringify(editando)
     });
     setEditando(null);
@@ -133,6 +145,7 @@ function Admin() {
 }
 
 export default Admin;
+
 
 
 
