@@ -21,10 +21,6 @@ function DetalleVehiculo() {
   if (!vehiculo) return <p>Cargando vehículo...</p>;
 
   const imagenActual = vehiculo.imagenes[imagenIndex];
-  const imagenUrl = (url) => `https://concesionariobackend-production.up.railway.app/imagenes/${url.split("/").pop()}`;
-
-
-  const seleccionarImagen = (i) => setImagenIndex(i);
 
   return (
     <div className="detalle-fondo">
@@ -34,9 +30,9 @@ function DetalleVehiculo() {
           <div className="detalle-carrusel">
             <button onClick={() => setImagenIndex((imagenIndex - 1 + vehiculo.imagenes.length) % vehiculo.imagenes.length)}>&lt;</button>
             <img
-              src={imagenUrl(imagenActual)}
+              src={imagenActual}
               alt="imagen principal"
-              onClick={() => setZoomUrl(imagenUrl(imagenActual))}
+              onClick={() => setZoomUrl(imagenActual)}
               className="detalle-imagen-grande"
             />
             <button onClick={() => setImagenIndex((imagenIndex + 1) % vehiculo.imagenes.length)}>&gt;</button>
@@ -46,9 +42,9 @@ function DetalleVehiculo() {
             {vehiculo.imagenes.map((img, i) => (
               <img
                 key={i}
-                src={imagenUrl(img)}
+                src={img}
                 className={`miniatura ${i === imagenIndex ? 'seleccionada' : ''}`}
-                onClick={() => seleccionarImagen(i)}
+                onClick={() => setImagenIndex(i)}
                 alt={`thumb-${i}`}
               />
             ))}
@@ -73,6 +69,7 @@ function DetalleVehiculo() {
     </div>
   );
 }
+
 
 export default DetalleVehiculo;
 
