@@ -21,7 +21,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  fetch('http://localhost:8080/api/vehiculos')
+  fetch('https://concesionariobackend-production.up.railway.app/api/vehiculos')
     .then(res => {
       if (!res.ok) throw new Error('Error al cargar productos');
       return res.json();

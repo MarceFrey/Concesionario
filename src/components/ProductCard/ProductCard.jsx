@@ -10,8 +10,8 @@ function ProductCard({ vehiculos }) {
       {vehiculos.map((auto, index) => {
         // Obtener la primera imagen:
         const primeraImagen = Array.isArray(auto.imagenes) && auto.imagenes.length > 0
-          ? `http://localhost:8080/imagenes/${auto.imagenes[0].split('/').pop()}`
-          : auto.imagen ? `http://localhost:8080/imagenes/${auto.imagen.split('/').pop()}` : null;
+          ? `https://concesionariobackend-production.up.railway.app/imagenes/${auto.imagenes[0].split('/').pop()}`
+          : auto.imagen ? `https://concesionariobackend-production.up.railway.app/imagenes/${auto.imagen.split('/').pop()}` : null;
 
 
         return (

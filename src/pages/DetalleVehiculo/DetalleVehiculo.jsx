@@ -10,7 +10,7 @@ function DetalleVehiculo() {
   const [zoomUrl, setZoomUrl] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/vehiculos`)
+    fetch("https://concesionariobackend-production.up.railway.app/api/vehiculos")
       .then(res => res.json())
       .then(data => {
         const encontrado = data.find(v => v.id === parseInt(id));
@@ -21,7 +21,8 @@ function DetalleVehiculo() {
   if (!vehiculo) return <p>Cargando vehículo...</p>;
 
   const imagenActual = vehiculo.imagenes[imagenIndex];
-  const imagenUrl = (url) => `http://localhost:8080/imagenes/${url.split("/").pop()}`;
+  const imagenUrl = (url) => `https://concesionariobackend-production.up.railway.app/imagenes/${url.split("/").pop()}`;
+
 
   const seleccionarImagen = (i) => setImagenIndex(i);
 

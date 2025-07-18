@@ -22,7 +22,7 @@ function Admin() {
   }, []);
 
   const fetchVehiculos = async () => {
-    const res = await fetch("http://localhost:8080/api/vehiculos");
+    const res = await fetch("https://concesionariobackend-production.up.railway.app/api/vehiculos");
     const data = await res.json();
     setVehiculos(data);
   };
@@ -44,7 +44,7 @@ function Admin() {
     imagenes.forEach((img) => datos.append("imagenes", img));
 
     try {
-      const res = await fetch("http://localhost:8080/api/vehiculos/subir", {
+      const res = await fetch("https://concesionariobackend-production.up.railway.app/api/vehiculos/subir", {
         method: "POST",
         body: datos
       });
@@ -61,7 +61,7 @@ function Admin() {
 
   const eliminarVehiculo = async (id) => {
     if (!window.confirm("¿Eliminar este vehículo?")) return;
-    await fetch(`http://localhost:8080/api/vehiculos/${id}`, { method: "DELETE" });
+    await fetch(`https://concesionariobackend-production.up.railway.app/api/vehiculos/${id}`, { method: "DELETE" });
     fetchVehiculos();
   };
 
@@ -69,7 +69,7 @@ function Admin() {
   const handleEditarChange = (e) => setEditando({ ...editando, [e.target.name]: e.target.value });
 
   const guardarCambios = async () => {
-    await fetch(`http://localhost:8080/api/vehiculos/${editando.id}`, {
+    await fetch(`https://concesionariobackend-production.up.railway.app/api/vehiculos/${editando.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(editando)
