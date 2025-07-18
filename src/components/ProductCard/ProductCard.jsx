@@ -8,20 +8,21 @@ function ProductCard({ vehiculos }) {
   return (
     <div className="vehiculo-container">
       {vehiculos.map((auto, index) => {
-        // Obtener la primera imagen:
-        const primeraImagen = Array.isArray(auto.imagenes) && auto.imagenes.length > 0
-          ? `https://concesionariobackend-production.up.railway.app/imagenes/${auto.imagenes[0].split('/').pop()}`
-          : auto.imagen ? `https://concesionariobackend-production.up.railway.app/imagenes/${auto.imagen.split('/').pop()}` : null;
-
+        // Usar directamente la primera imagen si existe
+        const primeraImagen =
+          Array.isArray(auto.imagenes) && auto.imagenes.length > 0
+            ? auto.imagenes[0]
+            : auto.imagen || null;
 
         return (
           <div className="tarjeta" key={index}>
-            <img
-              src={primeraImagen}
-              alt={`${auto.marca} ${auto.modelo}`}
-              className="tarjeta-imagen"
-            />
-
+            {primeraImagen && (
+              <img
+                src={primeraImagen}
+                alt={`${auto.marca} ${auto.modelo}`}
+                className="tarjeta-imagen"
+              />
+            )}
             <p className="tarjeta-nombre">{auto.marca}</p>
             <p className="tarjeta-nombre">{auto.modelo}</p>
             <p className="tarjeta-nombre">{auto.anio}</p>
@@ -38,5 +39,6 @@ function ProductCard({ vehiculos }) {
     </div>
   );
 }
+
 
 export default ProductCard;
