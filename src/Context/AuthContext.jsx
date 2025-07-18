@@ -8,10 +8,12 @@ export const AuthProvider = ({ children }) => {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [isAuth, setIsAuth] = useState(false);
+  const [token, setToken] = useState('');
   const navigate = useNavigate();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     let validationErrors = {};
     if (!email) validationErrors.email = 'Email es requerido';
     if (!password) validationErrors.password = 'Password es requerido';
@@ -22,36 +24,41 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const res = await fetch('/users.json');
-      const users = await res.json();
-      console.log(users);
+      const res = await fetch('https://concesionariobackend-production.up.railway.app/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
 
-      const foundUser = users.find(
-        (user) => user.email === email && user.password === password
-      );
-
-      if (!foundUser) {
-        setErrors({ email: 'credenciales invalidas' });
-      } else {
-        console.log('User role:', foundUser.role);
-        
-        if (foundUser.role === 'admin') {
-          setIsAuth(true);
-            
-          navigate('/admin');
-        } else {
-          navigate('/');
-        }
+      if (!res.ok) {
+        throw new Error('Credenciales inválidas');
       }
+
+      const data = await res.json();
+      const { token, rol } = data;
+
+      setToken(token);
+      setIsAuth(true);
+      setErrors({});
+      // localStorage.setItem("token", token); // opcional: persistencia
+      console.log('User role:', rol);
+
+      if (rol === 'ADMIN') {
+        navigate('/admin');
+      } else {
+        navigate('/');
+      }
+
     } catch (err) {
-      console.error('Error fetching users:', err);
-      setErrors({ email: 'Algo salió mal. Por favor, inténtalo de nuevo más tarde.' });
+      console.error('Error:', err);
+      setErrors({ email: 'Credenciales inválidas o error del servidor.' });
     }
   };
- 
 
   return (
-    <AuthContext.Provider value={{email, setEmail, password, setPassword, handleSubmit, errors, isAuth, setIsAuth}}>
+    <AuthContext.Provider value={{
+      email, setEmail, password, setPassword, handleSubmit, errors, isAuth, setIsAuth, token
+    }}>
       {children}
     </AuthContext.Provider>
   );
