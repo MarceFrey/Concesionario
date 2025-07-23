@@ -21,14 +21,32 @@ function Admin() {
   const { token } = useAuth(); // Obtenemos el token del contexto
 
   useEffect(() => {
+  if (token) {
     fetchVehiculos();
-  }, []);
+  }
+}, [token]);
 
-  const fetchVehiculos = async () => {
-    const res = await fetch("https://concesionariobackend-production.up.railway.app/api/vehiculos");
+const fetchVehiculos = async () => {
+  try {
+    const res = await fetch("https://concesionariobackend-production.up.railway.app/api/vehiculos", {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    if (!res.ok) {
+      throw new Error("No autorizado");
+    }
+
     const data = await res.json();
     setVehiculos(data);
-  };
+
+  } catch (error) {
+    console.error("Error al cargar vehículos:", error);
+    setMensaje("❌ No se pudo cargar la lista de vehículos. ¿Estás logueado como ADMIN?");
+  }
+};
+
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
