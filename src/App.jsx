@@ -21,34 +21,45 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  fetch('https://concesionariobackend-production.up.railway.app/api/vehiculos')
-    .then(res => {
-      if (!res.ok) throw new Error('Error al cargar productos');
-      return res.json();
-    })
-    .then(data => setAutos(data))
-    .catch(err => setError(err.message))
-    .finally(() => setLoading(false));
-}, []);
+    const fetchVehiculos = async () => {
+      try {
+        const res = await fetch('https://concesionariobackend-production.up.railway.app/api/vehiculos');
+        if (!res.ok) throw new Error('Error al cargar vehículos');
+        const data = await res.json();
+        setAutos(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVehiculos();
+  }, []);
 
   return (
     <>
       <div>
         <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/marcas" element={<Marcas/>}/>
-          <Route path="/vehiculos" element={<Vehiculos vehiculos={auto} error={error} loading={loading}/>}/>
-          <Route path="/sobrenosotros" element={<SobreNosotros/>}/>
-          <Route path="/ubicacion" element={<Ubicacion/>}/>
-          <Route path="/cotizacion" element={<Cotizacion/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/marcas" element={<Marcas />} />
+          <Route path="/vehiculos" element={<Vehiculos vehiculos={auto} error={error} loading={loading} />} />
+          <Route path="/sobrenosotros" element={<SobreNosotros />} />
+          <Route path="/ubicacion" element={<Ubicacion />} />
+          <Route path="/cotizacion" element={<Cotizacion />} />
           <Route path="/vehiculo/:id" element={<DetalleVehiculo vehiculos={auto} />} />
-          <Route path="/marcas/:marca" element={<MarcaVehiculo vehiculos={auto} error={error} loading={loading}/>} />
-          <Route path='/login' element={<Login/>}/>
-          <Route path="/admin" element={<ProtectedRoute isAuthenticated={isAuth}> <Admin /> </ProtectedRoute>}/>
+          <Route path="/marcas/:marca" element={<MarcaVehiculo vehiculos={auto} error={error} loading={loading} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/admin" element={
+            <ProtectedRoute isAuthenticated={isAuth}>
+              <Admin />
+            </ProtectedRoute>
+          } />
         </Routes>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
