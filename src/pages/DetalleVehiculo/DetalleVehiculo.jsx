@@ -10,17 +10,18 @@ function DetalleVehiculo() {
   const [zoomUrl, setZoomUrl] = useState(null);
 
   useEffect(() => {
-    fetch("https://concesionariobackend-production.up.railway.app/api/vehiculos")
-      .then(res => res.json())
-      .then(data => {
-        const encontrado = data.find(v => v.id === parseInt(id));
-        setVehiculo(encontrado);
-      });
+    fetch(`https://concesionariobackend-production.up.railway.app/api/vehiculos/${id}`)
+      .then(res => {
+        if (!res.ok) throw new Error("Error al obtener vehículo");
+        return res.json();
+      })
+      .then(data => setVehiculo(data))
+      .catch(err => console.error("Error:", err));
   }, [id]);
 
   if (!vehiculo) return <p>Cargando vehículo...</p>;
 
-  const imagenActual = vehiculo.imagenes[imagenIndex];
+  const imagenActual = vehiculo.imagenes?.[imagenIndex];
 
   return (
     <div className="detalle-fondo">
@@ -70,8 +71,9 @@ function DetalleVehiculo() {
   );
 }
 
-
 export default DetalleVehiculo;
+
+
 
 
 
