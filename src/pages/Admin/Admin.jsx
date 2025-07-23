@@ -47,6 +47,13 @@ const fetchVehiculos = async () => {
   }
 };
 
+useEffect(() => {
+  console.log("🔐 Token actual:", token); // 👈🏼 Log para depurar
+  if (token) {
+    fetchVehiculos();
+  }
+}, [token]);
+
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
